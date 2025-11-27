@@ -50,7 +50,7 @@ export function Contact() {
       icon: <Github size={24} />,
       label: 'GitHub',
       value: '@irsalshydiq',
-      link: 'https://github.com/irsalshydiq'
+      link: 'https://github.com/irs622'
     },
     {
       icon: <Instagram size={24} />,
