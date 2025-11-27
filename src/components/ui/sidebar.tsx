@@ -165,6 +165,10 @@ function Sidebar({
 }) {
   const { isMobile, state, openMobile, setOpenMobile } = useSidebar();
 
+  if (!isMobile) {
+    return null;
+  }
+
   if (collapsible === "none") {
     return (
       <div
