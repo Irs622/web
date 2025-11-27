@@ -9,4 +9,4 @@
 
   Run `npm run dev` to start the development server.
 
-link : https://github.com/developer/register?account=
+link : https://irsallshydiqq.netlify.app
