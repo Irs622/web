@@ -7,7 +7,7 @@ export function Footer() {
   const { theme } = useTheme();
   
   const socialLinks = [
-    { icon: <Github size={20} />, href: 'https://github.com/irsalshydiq', label: 'GitHub' },
+    { icon: <Github size={20} />, href: 'https://github.com/irs622', label: 'GitHub' },
     { icon: <Linkedin size={20} />, href: 'https://linkedin.com/in/LmIrsalshydiq', label: 'LinkedIn' },
     { icon: <Instagram size={20} />, href: 'https://instagram.com/irsalshydiq', label: 'Instagram' },
     { icon: <Mail size={20} />, href: 'mailto:Irsalshydiq@gmail.com', label: 'Email' }
