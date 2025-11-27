@@ -118,7 +118,7 @@ export function Home() {
           {[
             { title: 'UI/UX Design', count: '10+ Projects' },
             { title: 'React Dev', count: '10+ Apps' },
-            { title: 'Photography', count: '500+ Shots' },
+            { title: 'Photography', count: '200+ Shots' },
             { title: 'Writing', count: '50+ Articles' },
             { title: 'Video Editing', count: '80+ Videos' }
           ].map((item, index) => (
