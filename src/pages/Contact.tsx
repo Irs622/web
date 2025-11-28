@@ -5,6 +5,7 @@ import { GlassCard } from '../components/GlassCard';
 import { GlassButton } from '../components/GlassButton';
 import { GlassInput } from '../components/GlassInput';
 import { useTheme } from '../contexts/ThemeContext';
+import emailjs from '@emailjs/browser';
 
 export function Contact() {
   const { theme } = useTheme();
@@ -15,24 +16,60 @@ export function Contact() {
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
-  
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate form submission
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 3000);
+    setLoading(true);
+
+      // ✅ FORMAT WAKTU REAL-TIME INDONESIA
+  const getCurrentTime = () => {
+    return new Date().toLocaleString('id-ID', {
+      dateStyle: 'full',
+      timeStyle: 'short',
+      timeZone: 'Asia/Jakarta'
+    });
   };
   
+
+    emailjs
+      .send(
+        'service_a08ww86',      // <-- ganti dengan Service ID dari EmailJS
+        'template_buqp09h',     // <-- ganti dengan Template ID (template_...)
+        {
+          name: formData.name,          // {{name}}
+          email: formData.email,        // {{email}}
+          title: formData.subject,      // {{title}}
+          message: formData.message     // {{message}}
+          time: getCurrentTime()  
+        },
+        'S5tvNk8Ada0Q-7l85'       // <-- ganti dengan Public Key EmailJS
+      )
+      .then(
+        () => {
+          setLoading(false);
+          setSubmitted(true);
+          setFormData({ name: '', email: '', subject: '', message: '' });
+
+          setTimeout(() => {
+            setSubmitted(false);
+          }, 3000);
+        },
+        (error) => {
+          console.error('EmailJS error:', error);
+          setLoading(false);
+          alert('Gagal mengirim pesan, coba lagi ya 🙏');
+        }
+      );
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
-  
+
   const socialLinks = [
     {
       icon: <Mail size={24} />,
@@ -59,7 +96,7 @@ export function Contact() {
       link: 'https://instagram.com/irsalshydiq'
     }
   ];
-  
+
   const contactInfo = [
     {
       icon: <MapPin size={20} />,
@@ -72,7 +109,7 @@ export function Contact() {
       value: '+62 821-8727-0634'
     }
   ];
-  
+
   return (
     <div className="min-h-screen pt-16 pb-16 px-6">
       <div className="max-w-6xl mx-auto">
@@ -90,7 +127,7 @@ export function Contact() {
             Have a project in mind? Let's create something amazing together
           </p>
         </motion.div>
-        
+
         <div className="grid lg:grid-cols-[1fr_400px] gap-8">
           {/* Contact Form */}
           <motion.div
@@ -102,7 +139,7 @@ export function Contact() {
               <h2 className={`mb-6 ${theme === 'light' ? 'text-gray-900' : 'text-white'}`}>
                 Send a Message
               </h2>
-              
+
               {submitted ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -139,7 +176,7 @@ export function Contact() {
                       required
                     />
                   </div>
-                  
+
                   <GlassInput
                     type="text"
                     name="subject"
@@ -148,7 +185,7 @@ export function Contact() {
                     onChange={handleChange}
                     required
                   />
-                  
+
                   <GlassInput
                     multiline
                     rows={6}
@@ -158,10 +195,10 @@ export function Contact() {
                     onChange={handleChange}
                     required
                   />
-                  
-                  <GlassButton type="submit" className="w-full">
+
+                  <GlassButton type="submit" className="w-full" disabled={loading}>
                     <span className="flex items-center justify-center gap-2">
-                      Send Message
+                      {loading ? 'Sending...' : 'Send Message'}
                       <Send size={18} />
                     </span>
                   </GlassButton>
@@ -169,7 +206,7 @@ export function Contact() {
               )}
             </GlassCard>
           </motion.div>
-          
+
           {/* Contact Info & Social */}
           <div className="space-y-6">
             {/* Contact Info */}
@@ -182,7 +219,7 @@ export function Contact() {
                 <h3 className={`mb-4 ${theme === 'light' ? 'text-gray-900' : 'text-white'}`}>
                   Contact Information
                 </h3>
-                
+
                 <div className="space-y-4">
                   {contactInfo.map((info) => (
                     <div key={info.label} className="flex items-center gap-3">
@@ -208,7 +245,7 @@ export function Contact() {
                 </div>
               </GlassCard>
             </motion.div>
-            
+
             {/* Social Links */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
@@ -219,7 +256,7 @@ export function Contact() {
                 <h3 className={`mb-4 ${theme === 'light' ? 'text-gray-900' : 'text-white'}`}>
                   Social Links
                 </h3>
-                
+
                 <div className="space-y-3">
                   {socialLinks.map((social) => (
                     <a
@@ -259,7 +296,7 @@ export function Contact() {
                 </div>
               </GlassCard>
             </motion.div>
-            
+
             {/* Availability */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
