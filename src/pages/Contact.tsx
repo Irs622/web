@@ -32,18 +32,17 @@ export function Contact() {
   };
   
 
-    emailjs
-      .send(
-        'service_a08ww86',      // <-- ganti dengan Service ID dari EmailJS
-        'template_buqp09h',     // <-- ganti dengan Template ID (template_...)
+    emailjs.send(
+        'service_a08ww86',      
+        'template_buqp09h',    
         {
-          name: formData.name,          // {{name}}
-          email: formData.email,        // {{email}}
-          title: formData.subject,      // {{title}}
-          message: formData.message     // {{message}}
-          time: getCurrentTime()  
+          name: formData.name,        
+          email: formData.email,        
+          title: formData.subject,      
+          message: formData.message,  
+          time: getCurrentTime(), 
         },
-        'S5tvNk8Ada0Q-7l85'       // <-- ganti dengan Public Key EmailJS
+        'S5tvNk8Ada0Q-7l85'      
       )
       .then(
         () => {
