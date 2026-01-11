@@ -3,7 +3,19 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    {
+      name: "resolve-figma-assets",
+      resolveId(source) {
+        if (source.startsWith("figma:asset/")) {
+          const filename = source.replace("figma:asset/", "");
+          return path.resolve(__dirname, "src/assets", filename);
+        }
+        return null;
+      },
+    },
+  ],
 
   resolve: {
     alias: {
