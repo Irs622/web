@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Point to sitemap
+Sitemap: https://irsallshydiqq.netlify.app/sitemap.xml

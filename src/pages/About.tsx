@@ -88,6 +88,7 @@ export function About() {
                     src={profileImage}
                     alt="Irsal Shydiq"
                     className="w-full h-full object-cover"
+                    priority
                   />
                 </div>
                 
