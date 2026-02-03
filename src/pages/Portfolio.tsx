@@ -6,6 +6,7 @@ import { GlassCard } from '../components/GlassCard';
 import { useTheme } from '../contexts/ThemeContext';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import liveEventImage from 'figma:asset/5879bf3215834319cdadf80da5a00755d2ab9eb0.png';
+import portfolioWebAppImage from '../assets/portfolio-web-app.png';
 
 type Category = 'All' | 'UI/UX' | 'React' | 'Photography' | 'Writing' | 'Video Editing';
 
@@ -32,7 +33,7 @@ const projects: Project[] = [
     title: 'Portfolio Web App',
     category: 'React',
     description: 'Interactive React portfolio with smooth animations',
-    image: 'https://images.unsplash.com/photo-1591267990439-bc68529677c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZWFjdCUyMGRldmVsb3BtZW50JTIwY29kZXxlbnwxfHx8fDE3NjQwOTEyNjR8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    image: portfolioWebAppImage,
     tags: ['React', 'TypeScript', 'Tailwind']
   },
   {
@@ -81,13 +82,13 @@ export function Portfolio() {
   const [activeCategory, setActiveCategory] = useState<Category>('All');
   const { theme } = useTheme();
   const navigate = useNavigate();
-  
+
   const categories: Category[] = ['All', 'UI/UX', 'React', 'Photography', 'Writing', 'Video Editing'];
-  
-  const filteredProjects = activeCategory === 'All' 
-    ? projects 
+
+  const filteredProjects = activeCategory === 'All'
+    ? projects
     : projects.filter(p => p.category === activeCategory);
-  
+
   return (
     <div className="min-h-screen pt-16 pb-16 px-6">
       <div className="max-w-7xl mx-auto">
@@ -105,7 +106,7 @@ export function Portfolio() {
             Explore my work across design, development, photography, video editing, and writing
           </p>
         </motion.div>
-        
+
         {/* Filter Tabs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -134,7 +135,7 @@ export function Portfolio() {
             </button>
           ))}
         </motion.div>
-        
+
         {/* Projects Grid */}
         <motion.div
           layout
@@ -149,8 +150,8 @@ export function Portfolio() {
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
             >
-              <GlassCard 
-                hover 
+              <GlassCard
+                hover
                 onClick={() => navigate('/case-study', { state: { project } })}
               >
                 <div className="relative overflow-hidden rounded-[12px] mb-4 h-48">
@@ -159,23 +160,22 @@ export function Portfolio() {
                     alt={project.title}
                     className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                   />
-                  <div className={`absolute top-3 right-3 p-2 rounded-full backdrop-blur-[20px] ${
-                    theme === 'light'
+                  <div className={`absolute top-3 right-3 p-2 rounded-full backdrop-blur-[20px] ${theme === 'light'
                       ? 'bg-white/70'
                       : 'bg-white/20'
-                  }`}>
+                    }`}>
                     <ExternalLink size={16} className={theme === 'light' ? 'text-gray-800' : 'text-white'} />
                   </div>
                 </div>
-                
+
                 <h3 className={`mb-2 ${theme === 'light' ? 'text-gray-900' : 'text-white'}`}>
                   {project.title}
                 </h3>
-                
+
                 <p className={`mb-4 ${theme === 'light' ? 'text-gray-600' : 'text-gray-400'}`}>
                   {project.description}
                 </p>
-                
+
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
                     <span
