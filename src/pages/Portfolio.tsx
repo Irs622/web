@@ -7,6 +7,7 @@ import { useTheme } from '../contexts/ThemeContext';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import liveEventImage from 'figma:asset/5879bf3215834319cdadf80da5a00755d2ab9eb0.png';
 import portfolioWebAppImage from '../assets/portfolio-web-app.png';
+import reactComponentLibraryImage from '../assets/react-component-library.png';
 
 type Category = 'All' | 'UI/UX' | 'React' | 'Photography' | 'Writing' | 'Video Editing';
 
@@ -65,7 +66,7 @@ const projects: Project[] = [
     title: 'React Component Library',
     category: 'React',
     description: 'Reusable component library with Storybook documentation',
-    image: 'https://images.unsplash.com/photo-1591267990439-bc68529677c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZWFjdCUyMGRldmVsb3BtZW50JTIwY29kZXxlbnwxfHx8fDE3NjQwOTEyNjR8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    image: reactComponentLibraryImage,
     tags: ['React', 'Components', 'Storybook']
   },
   {
@@ -161,8 +162,8 @@ export function Portfolio() {
                     className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                   />
                   <div className={`absolute top-3 right-3 p-2 rounded-full backdrop-blur-[20px] ${theme === 'light'
-                      ? 'bg-white/70'
-                      : 'bg-white/20'
+                    ? 'bg-white/70'
+                    : 'bg-white/20'
                     }`}>
                     <ExternalLink size={16} className={theme === 'light' ? 'text-gray-800' : 'text-white'} />
                   </div>
