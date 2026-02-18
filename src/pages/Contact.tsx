@@ -22,28 +22,28 @@ export function Contact() {
     e.preventDefault();
     setLoading(true);
 
-      // ✅ FORMAT WAKTU REAL-TIME INDONESIA
-  const getCurrentTime = () => {
-    return new Date().toLocaleString('id-ID', {
-      dateStyle: 'full',
-      timeStyle: 'short',
-      timeZone: 'Asia/Jakarta'
-    });
-  };
-  
+    // ✅ FORMAT WAKTU REAL-TIME INDONESIA
+    const getCurrentTime = () => {
+      return new Date().toLocaleString('id-ID', {
+        dateStyle: 'full',
+        timeStyle: 'short',
+        timeZone: 'Asia/Jakarta'
+      });
+    };
+
 
     emailjs.send(
-        'service_a08ww86',      
-        'template_buqp09h',    
-        {
-          name: formData.name,        
-          email: formData.email,        
-          title: formData.subject,      
-          message: formData.message,  
-          time: getCurrentTime(), 
-        },
-        'S5tvNk8Ada0Q-7l85'      
-      )
+      import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+      {
+        name: formData.name,
+        email: formData.email,
+        title: formData.subject,
+        message: formData.message,
+        time: getCurrentTime(),
+      },
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+    )
       .then(
         () => {
           setLoading(false);
