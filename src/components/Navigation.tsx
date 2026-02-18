@@ -7,25 +7,25 @@ export function Navigation() {
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
-  
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  
+
   const navItems = [
-    { path: '/', label: 'Home' },
+    { path: '/home', label: 'Home' },
     { path: '/portfolio', label: 'Portfolio' },
     { path: '/about', label: 'About' },
     { path: '/contact', label: 'Contact' }
   ];
-  
+
   const isActive = (path: string) => location.pathname === path;
-  
+
   return (
     <>
       {/* Main Navigation */}
@@ -67,7 +67,7 @@ export function Navigation() {
                 </Link>
               ))}
             </div>
-            
+
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
@@ -86,7 +86,7 @@ export function Navigation() {
           </div>
         </div>
       </nav>
-      
+
       {/* Spacer to prevent content from hiding under sticky header */}
       <div className="h-20" />
     </>

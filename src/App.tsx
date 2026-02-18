@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
@@ -18,7 +18,8 @@ export default function App() {
           <Navigation />
           <main className="flex-1">
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<Navigate to="/about" replace />} />
+              <Route path="/home" element={<Home />} />
               <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/case-study" element={<CaseStudy />} />
               <Route path="/about" element={<About />} />
